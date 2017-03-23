@@ -65,6 +65,7 @@
             <version>1.2.25</version>
         </dependency>
     </dependencies>
+    <!--不同环境使用不同的resource文件夹-->
     <profiles>
         <profile>
             <id>pro</id>
@@ -94,6 +95,7 @@
         </profile>
     </profiles>
     <build>
+        <!--指定test资源文件夹-->
         <testResources>
             <testResource>
                 <directory>src/resource</directory>
@@ -103,6 +105,7 @@
             </testResource>
         </testResources>
         <plugins>
+            <!--指定编译环节的jdk版本和encoding编码-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -112,6 +115,7 @@
                     <encoding>utf-8</encoding>
                 </configuration>
             </plugin>
+            <!--指定可执行jar包的main方法-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -132,14 +136,25 @@
                     </execution>
                 </executions>
             </plugin>
+            <!--发布war包是指定web.xml路径 和 静态资源的位置-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.1-beta-1</version>
                 <configuration>
                     <webXml>web\WEB-INF\web.xml</webXml>
+                    <webResources>
+                        <resource>
+                            <directory>web\jsp</directory>
+                            <targetPath>\jsp</targetPath>
+                            <filtering>true</filtering>
+                        </resource>
+                    </webResources>
                 </configuration>
+
             </plugin>
+
         </plugins>
+
     </build>
 </project>
