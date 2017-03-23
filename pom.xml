@@ -6,6 +6,7 @@
     <groupId>com.baobin</groupId>
     <artifactId>mavenTest</artifactId>
     <version>1.0.0-snapshot</version>
+    <packaging>war</packaging>
     <name>mavenTest</name>
     <properties>
         <project.build.sourceEncoding>
@@ -54,17 +55,35 @@
         </dependency>
 
     </dependencies>
+    <profiles>
+        <profile>
+            <id>pro</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/resource-pro</directory>
+                        <includes>
+                            <include>**/*</include>
+                        </includes>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+        <profile>
+            <id>local</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/resource</directory>
+                        <includes>
+                            <include>**/*</include>
+                        </includes>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
     <build>
-
-        <resources>
-            <resource>
-                <directory>src/resource</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-            </resource>
-        </resources>
-
         <testResources>
             <testResource>
                 <directory>src/resource</directory>
